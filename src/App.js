@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import Todos from "./components/Todos"
+import TodoItem from "./components/TodoItem"
+import { AddTodo  } from "./components/AddTodo"
+import { About } from "./components/About"
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+const App=()=> {
+  const [todos, settodos] = useState('');
+
+  const addTodo = (title, desc) => {
+    
+    const myTodo = {
+      
+      title: title,
+      desc: desc,
+    }
+    settodos([...todos, myTodo]);
+    console.log(myTodo);
+  }
+  
+
+  return ( 
+    <> 
+    
+      <Header /> 
+      <AddTodo  addTodo={addTodo} />
+      <Todos todos={todos}  /> 
+      <Footer />
+     
+         
+        </>
   );
 }
 
